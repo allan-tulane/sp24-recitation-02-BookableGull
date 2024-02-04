@@ -3,20 +3,20 @@ import math
 
 def test_simple_work():
 	""" done. """
-	assert work_calc(10, 2, 2) == 50.0
-	assert work_calc(20, 3, 2) == 415.625
-	assert work_calc(30, 4, 2) == 1890.0
-	assert work_calc(40, 5, 8) == 1890.0
-	assert work_calc(50, 2, 1) == 1890.0
-	assert work_calc(21, 4, 20) == 1890.0
+	assert simple_work_calc(10, 2, 2) == 50.0
+	assert simple_work_calc(20, 3, 2) == 415.625
+	assert simple_work_calc(30, 4, 2) == 1890.0
+	assert simple_work_calc(40, 5, 8) == 80.625
+	assert simple_work_calc(50, 3, 2) == 1608.59375
+	assert simple_work_calc(21, 4, 20) == 26.04
 
 def test_work():
 	assert work_calc(10, 2, 2,lambda n: 1) == 25.0
-	assert work_calc(20, 1, 2, lambda n: n*n) == 272.875
-	assert work_calc(30, 3, 2, lambda n: n) == 348.8125
-	assert work_calc(40, 2, 1, lambda n: n) == 348.8125
-	assert work_calc(21, 4, 2,lambda n: 1) == 25.0
-	assert work_calc(40, 2, 4, lambda n: n*n) == 272.875
+	assert work_calc(20, 1, 2, lambda n: n*n) == 533.4375
+	assert work_calc(30, 3, 2, lambda n: n) == 623.4375
+	assert work_calc(40, 3, 2, lambda n: n) == 1286.875
+	assert work_calc(21, 4, 2,lambda n: 1) == 1013.0
+	assert work_calc(40, 2, 4, lambda n: n*n) == 1830.0
 
 
 def test_compare_work():
@@ -61,11 +61,14 @@ def test_compare_work():
 
 
 
-def test_compare_span(span_func1, span_func2, max_n):
-    for n in range(1, max_n + 1):
+def test_compare_span():
+    span_func1 = lambda n: n
+    span_func2 = lambda n: n*n
+    max_n = 8
+    for n in range(2, max_n + 1):
         result1 = span_func1(n)
         result2 = span_func2(n)
-        assert result1 == result2, f"Mismatch for n={n}: Span 1: {result1}, Span 2: {result2}"
+        assert result1 < result2, f"Mismatch for n={n}: Span 1: {result1}, Span 2: {result2}"
 
     print("All tests passed.")
     return True

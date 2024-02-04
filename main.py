@@ -8,8 +8,6 @@ import time
 ###
 
 def simple_work_calc(n, a, b):
-	
-
 	# TODO
 	pass
 
@@ -17,6 +15,7 @@ def simple_work_calc(n, a, b):
 		return n
 	else:
 		return a * simple_work_calc(n / b, a, b) + n
+
 
 
 
@@ -46,7 +45,8 @@ def work_calc(n, a, b, f):
 		return n
 	else:
 		return a * work_calc(n / b, a, b, f) + f(n)
-
+	
+print(simple_work_calc(21, 4, 20))
 
 
 
