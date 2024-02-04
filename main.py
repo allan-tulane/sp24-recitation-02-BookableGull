@@ -8,17 +8,25 @@ import time
 ###
 
 def simple_work_calc(n, a, b):
-	"""Compute the value of the recurrence $W(n) = aW(n/b) + n
+	
 
-	Params:
-	n......input integer
-	a......branching factor of recursion tree
-	b......input split factor
-
-	Returns: the value of W(n).
-	"""
 	# TODO
 	pass
+
+	if n <= 1:
+		return n
+	else:
+		return a * simple_work_calc(n / b, a, b) + n
+
+
+
+
+
+
+
+
+
+
 
 def work_calc(n, a, b, f):
 	"""Compute the value of the recurrence $W(n) = aW(n/b) + f(n)
@@ -34,22 +42,30 @@ def work_calc(n, a, b, f):
 	"""
 	# TODO
 	pass
+	if n <= 1:
+		return n
+	else:
+		return a * work_calc(n / b, a, b, f) + f(n)
+
+
+
+
+
+
+
+
+
+
 
 def span_calc(n, a, b, f):
-	"""Compute the span associated with the recurrence $W(n) = aW(n/b) + f(n)
-
-	Params:
-	n......input integer
-	a......branching factor of recursion tree
-	b......input split factor
-	f......a function that takes an integer and returns 
-           the work done at each node 
-
-	Returns: the value of W(n).
-	"""
-	# TODO
-	pass
-
+	if n == 1:
+		return f(1)
+	k = 1
+	current_work = f(n)
+	subproblem_sizes = [n // b] * (b - 1) + [n - (n // b) * (b - 1)]
+	subproblem_spans = [span_calc(size, a, b, f) for size in subproblem_sizes]
+	max_subproblem_span = max(subproblem_spans)
+	return current_work + a * max_subproblem_span
 
 
 def compare_work(work_fn1, work_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000]):
@@ -72,12 +88,8 @@ def compare_work(work_fn1, work_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000])
 			))
 	return result
 
-def print_results(results):
-	""" done """
-	print(tabulate.tabulate(results,
-							headers=['n', 'W_1', 'W_2'],
-							floatfmt=".3f",
-							tablefmt="github"))
+
+
 
 
 
@@ -91,14 +103,11 @@ def compare_span(span_fn1, span_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000])
 	(n, work_fn1(n), work_fn2(n), ...)
 	
 	"""
-	result = []
-	for n in sizes:
-		# compute W(n) using current a, b, f
-		result.append((
-			n,
-			span_fn1,
-			span_fn2
-			))
-	return result
-	
+	results = []
 
+	for size in sizes:
+		span1 = span_fn1(size)
+		span2 = span_fn2(size)
+		results.append((size, span1, span2))
+	return results
+	

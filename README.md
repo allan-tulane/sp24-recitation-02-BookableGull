@@ -1,6 +1,6 @@
 # CMPS 2200  Recitation 02
 
-**Name (Team Member 1):**_________________________  
+**Name (Team Member 1):**Ivo Tomasovich 
 **Name (Team Member 2):**_________________________
 
 In this recitation, we will investigate recurrences. 
@@ -37,12 +37,24 @@ where $W(1) = 1$.
 
 - [ ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
-**TODO: your answer goes here**
+**For f(n) = 1, the asymptotic behaviot is O(n) because the results running from 1-5 show that the results grow lineraly from 1. For f(n) = log n, the asyptotic behavior is O(log(n)) because the results show that the runtime grows logarithmically with n. For f(n) = n, the asymptotic behavior is O(n) because the results show the symptotic runtime growing linearly with n**
 
 - [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `test_compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
-**TODO: your answer goes here**
+**If c is less than log_b a, the asymptotic behavior is Θ(a^log_b_n), for c is greater than log_b a, the asymptotic behavior is O*(n^c), and if they're equal, the asymptotic behavior is O(n^log_b_a * log_n) Below I'll copy a few different cases to prove my answer:
+For a=2, b=2, c=0.5, log_b_a=1.0, n=1, Empirical result: 1.0
+For a=2, b=2, c=0.5, log_b_a=1.0, n=2, Empirical result: 3.414213562373095
+For a=2, b=2, c=0.5, log_b_a=1.0, n=3, Empirical result: 3.732050807568877
+
+For a=2, b=2, c=1, log_b_a=1.0, n=1, Empirical result: 1
+For a=2, b=2, c=1, log_b_a=1.0, n=2, Empirical result: 4
+For a=2, b=2, c=1, log_b_a=1.0, n=3, Empirical result: 5
+
+For a=2, b=2, c=1.5, log_b_a=1.0, n=1, Empirical result: 1.0
+For a=2, b=2, c=1.5, log_b_a=1.0, n=2, Empirical result: 4.82842712474619
+For a=2, b=2, c=1.5, log_b_a=1.0, n=3, Empirical result: 7.196152422706632**
 
 - [ ] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
 
-**TODO: your answer goes here**
+**For f(n) = 1, the expression is O(log_b_n), for f(n) = log_n, the expression is O(log^2_b_n), for f(n) = n, the asymptotic expression is O(n)**
+
