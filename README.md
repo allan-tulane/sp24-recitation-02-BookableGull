@@ -37,11 +37,11 @@ where $W(1) = 1$.
 
 - [ ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
-**For f(n) = 1, the asymptotic behaviot is O(n) because the results running from 1-5 show that the results grow lineraly from 1. For f(n) = log n, the asyptotic behavior is O(log(n)) because the results show that the runtime grows logarithmically with n. For f(n) = n, the asymptotic behavior is O(n) because the results show the symptotic runtime growing linearly with n**
+**For f(n) = 1, the asymptotic behaviot is Θ(1). For f(n) = log n, the asyptotic behavior is Θ(log^2(n))For f(n) = n, the asymptotic behavior is Θ(1)n**
 
 - [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `test_compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
-**If c is less than log_b a, the asymptotic behavior is Θ(a^log_b_n), for c is greater than log_b a, the asymptotic behavior is O*(n^c), and if they're equal, the asymptotic behavior is O(n^log_b_a * log_n) Below I'll copy a few different cases to prove my answer:
+**If c is less than log_b a, the asymptotic behavior is Θ(n^log_b_a), for c is greater than log_b a, the asymptotic behavior is O*(n^c), and if they're equal, the asymptotic behavior is O(n^c * log_n) Below I'll copy a few different cases to prove my answer:
 For a=2, b=2, c=0.5, log_b_a=1.0, n=1, Empirical result: 1.0
 For a=2, b=2, c=0.5, log_b_a=1.0, n=2, Empirical result: 3.414213562373095
 For a=2, b=2, c=0.5, log_b_a=1.0, n=3, Empirical result: 3.732050807568877
